@@ -14,8 +14,13 @@ class AppImages {
 
 // Colors
 class AppColors {
+  // All
   static const Color primary = Color(0xffFFFFFF);
   static const Color secondary = Color(0xff000000);
   static const Color red = Color(0xffF83758);
   static const Color grey = Color(0xffA8A8A9);
+  // TextField
+  static const Color textfieldIcon = Color(0xff626262);
+  static const Color textfieldBorderandHintText = Color(0xffA8A8A9);
+  static const textfieldBackground = Color(0xffF3F3F3);
 }
