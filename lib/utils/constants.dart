@@ -2,7 +2,7 @@
 import 'package:flutter/services.dart';
 
 class AppImages {
-  static const String fastionShop = "assets/images/fashion shop-rafiki 1.png";
+  static const String fashionShop = "assets/images/fashion shop-rafiki 1.png";
   static const String salesConsulting =
       "assets/images/Sales consulting-pana 1.png";
   static const String shoppingBag = "assets/images/Shopping bag-rafiki 1.png";

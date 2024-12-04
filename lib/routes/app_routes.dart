@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/presentation/screens/onboarding_screen.dart';
 import 'package:stylish/presentation/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -8,11 +9,11 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashscreen:
-        return MaterialPageRoute(builder: (_) =>  SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case onboarding:
         final args = settings.arguments as String?;
         return MaterialPageRoute(
-          builder: (_) => const SplashScreen()
+          builder: (_) => const OnboardingScreen()
         );
       default:
         return MaterialPageRoute(
