@@ -50,7 +50,9 @@ class SignInScreen extends StatelessWidget {
                   height: ResponsiveHelper.getScreenHeight(context) * 0.010,
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).pushNamed('/forgotpassword');
+                  },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -153,7 +155,7 @@ class SignInScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: ResponsiveHelper.getScreenHeight(context) * 0.025,
+                  height: ResponsiveHelper.getScreenHeight(context) * 0.035,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
