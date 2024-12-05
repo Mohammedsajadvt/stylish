@@ -19,9 +19,9 @@ class AppRoutes {
           builder: (_) => const OnboardingScreen()
         );
       case signin:
-        return MaterialPageRoute(builder: (_) => const SigninScreen());
+        return MaterialPageRoute(builder: (_) => const SignInScreen());
       case signup:
-        return MaterialPageRoute(builder: (_) => const SignupScreen());     
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());     
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
