@@ -10,6 +10,7 @@ class AppImages {
   static const String apple = "assets/icons/apple.png";
   static const String facebook = "assets/icons/facebook.png";
   static const String google = "assets/icons/google.png";
+  static const String cloth = "assets/images/cloth.png";
 }
 
 // Colors
@@ -21,6 +22,7 @@ class AppColors {
   static const Color grey = Color(0xffA8A8A9);
   // TextField
   static const Color textfieldIcon = Color(0xff626262);
-  static const Color textfieldBorderandHintText = Color(0xff676767);
-  static const textfieldBackground = Color(0xffA8A8A9);
+  static const Color textfieldHintText = Color(0xff676767);
+  static const Color textfieldBorder = Color(0xffA8A8A97);
+  static const textfieldBackground = Color(0xffF3F3F3);
 }

@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
           controller: controller,
           obscureText: suffixIcon != null ? !state.isVisible : false,
           decoration: InputDecoration(
+            filled: true,
               suffixIcon: suffixIcon != null
                   ? IconButton(
                       icon: Icon(
@@ -45,14 +46,14 @@ class CustomTextField extends StatelessWidget {
               ),
               hintText: hintText,
               hintStyle: const TextStyle(
-                  color: AppColors.textfieldBorderandHintText),
+                  color: AppColors.textfieldHintText),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                      color: AppColors.textfieldBorderandHintText)),
+                      color: AppColors.textfieldBorder)),
               focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                      color: AppColors.textfieldBorderandHintText),
+                      color: AppColors.textfieldBorder),
                   borderRadius: BorderRadius.circular(10)),
                   fillColor: AppColors.textfieldBackground,
                   ),
