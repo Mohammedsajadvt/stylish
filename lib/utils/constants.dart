@@ -20,6 +20,7 @@ class AppColors {
   static const Color secondary = Color(0xff000000);
   static const Color red = Color(0xffF83758);
   static const Color grey = Color(0xffA8A8A9);
+  static const Color backgroundColor = Color(0xffF9F9F9);
   // TextField
   static const Color textfieldIcon = Color(0xff626262);
   static const Color textfieldHintText = Color(0xff676767);

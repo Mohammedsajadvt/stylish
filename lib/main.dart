@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/bloc/visibility_bloc_bloc.dart';
+import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
+import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
+import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
 import 'package:stylish/presentation/screens/getstarted_screen.dart';
 import 'package:stylish/presentation/screens/splash_screen.dart';
 import 'package:stylish/routes/app_routes.dart';
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => VisibilityBloc()),
+        BlocProvider(create: (_) => BottomNavigationBloc())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
        // initialRoute: AppRoutes.splashscreen,
        // onGenerateRoute: AppRoutes.generateRoute,
-       home: GetstartedScreen(),
+       home: BottomNavBar(),
       ),
     );
   }
