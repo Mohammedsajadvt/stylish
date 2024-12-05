@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish/presentation/screens/forgot_password_screen.dart';
+import 'package:stylish/presentation/screens/getstarted_screen.dart';
 import 'package:stylish/presentation/screens/onboarding_screen.dart';
 import 'package:stylish/presentation/screens/signin_screen.dart';
 import 'package:stylish/presentation/screens/signup_screen.dart';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String signin = '/signin';
   static const String signup = '/signup';
   static const String forgotPassword = '/forgotpassword';
+  static const String getstarted = "/getstarted";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -26,6 +28,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const SignUpScreen());     
       case forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());     
+      case getstarted:
+        return MaterialPageRoute(builder: (_) => const GetstartedScreen());     
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
