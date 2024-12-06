@@ -56,7 +56,7 @@ class BottomNavBar extends StatelessWidget {
             items: List.generate(navigationItems.length, (index) {
               return Icon(
                 (navigationItems[index] as Icon).icon,
-                color: state.selectedIndex == index ? Colors.white : Colors.black,
+                color: state.selectedIndex == index ? Colors.white : AppColors.red,
               );
             }),
           );
