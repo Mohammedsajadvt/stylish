@@ -27,3 +27,5 @@ class SignUpEvent extends FirebaseAuthEvent{
   @override
   List<Object> get props => [user];
 }
+
+class LogoutEvent extends FirebaseAuthEvent{}

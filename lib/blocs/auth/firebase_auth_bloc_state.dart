@@ -9,7 +9,7 @@ abstract class FirebaseAuthState extends Equatable {
 
 class FirebaseAuthInitial extends FirebaseAuthState {}
 
-class LoadingState extends FirebaseAuthState{}
+class AuthLoading extends FirebaseAuthState{}
 
 class AuthendicatedState extends FirebaseAuthState{
   User user;

@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
+import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
 import 'package:stylish/routes/app_routes.dart';
 
 void main() async {
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => VisibilityBloc()),
-        BlocProvider(create: (_) => BottomNavigationBloc())
+        BlocProvider(create: (_) => BottomNavigationBloc()),
+        BlocProvider(create: (_) => FirebaseAuthBloc()),
+        BlocProvider(create: (_) => FirebaseAuthBloc()..add(CheckLoginStatusEvent()))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

@@ -44,19 +44,18 @@ class BottomNavBar extends StatelessWidget {
         builder: (context, state) {
           return CurvedNavigationBar(
             onTap: (index) {
-              // Dispatch event to change selected index in the BLoC
               context.read<BottomNavigationBloc>().add(
                     BottomNavigationIndexChanged(index),
                   );
             },
-            color: AppColors.primary,
+            color: AppColors.red,
             buttonBackgroundColor: AppColors.red,
             backgroundColor: Colors.transparent,
-            index: state.selectedIndex, // Highlight the selected index
+            index: state.selectedIndex, 
             items: List.generate(navigationItems.length, (index) {
               return Icon(
                 (navigationItems[index] as Icon).icon,
-                color: state.selectedIndex == index ? Colors.white : AppColors.red,
+                color:  Colors.white,
               );
             }),
           );

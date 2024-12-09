@@ -1,9 +1,7 @@
 class UserModel {
-  String? email;
-  String? password;
-  String? uid;
-  String? name;
-  String? phone;
+  final String email;
+  final String password;
+  final String? uid;
 
-  UserModel(this.email,this.name,this.password,this.phone,this.uid);
+  UserModel(this.email, this.password, [this.uid]);
 }
