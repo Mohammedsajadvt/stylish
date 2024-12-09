@@ -114,7 +114,9 @@ class SignInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            authbloc.add(SignInWithGoogle());
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -136,7 +138,9 @@ class SignInScreen extends StatelessWidget {
                           width: ResponsiveHelper.getScreenWidth(context) * 0.025,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            authbloc.add(SignInApple());
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -158,7 +162,9 @@ class SignInScreen extends StatelessWidget {
                           width: ResponsiveHelper.getScreenWidth(context) * 0.025,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            authbloc.add(SignInWithFacebook());
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,

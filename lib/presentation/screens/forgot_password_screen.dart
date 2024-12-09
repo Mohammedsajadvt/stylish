@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:stylish/presentation/widgets/custom_button.dart';
 import 'package:stylish/presentation/widgets/custom_text_field.dart';
@@ -10,7 +11,8 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
+        final TextEditingController _emailController = TextEditingController();
+
     return Scaffold(
       backgroundColor: AppColors.primary,
       body: SafeArea(
@@ -72,7 +74,21 @@ class ForgotPasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: ResponsiveHelper.getScreenHeight(context) * 0.040,
                 ),
-                const CustomButton(title: 'Submit')
+                GestureDetector(onTap: ()async{
+                        try {
+                          await FirebaseAuth.instance
+                              .sendPasswordResetEmail(email: _emailController.text.trim());
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Password reset email sent!')),
+                          );
+                          Navigator.of(context).pop();
+                        }catch(e){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(e.toString())),
+                          );
+                        }
+                  
+                },child: const CustomButton(title: 'Submit'))
               ],
             ),
           ),

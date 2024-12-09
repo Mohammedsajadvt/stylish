@@ -29,3 +29,16 @@ class SignUpEvent extends FirebaseAuthEvent{
 }
 
 class LogoutEvent extends FirebaseAuthEvent{}
+
+class SignInWithGoogle extends FirebaseAuthEvent{}
+
+class SignInApple extends FirebaseAuthEvent{}
+
+class SignInWithFacebook extends FirebaseAuthEvent{}
+
+
+class SignUpWithGoogle extends FirebaseAuthEvent{}
+
+class SignUpWithApple extends FirebaseAuthEvent{}
+
+class SignUpWithFacebook extends FirebaseAuthEvent{}
