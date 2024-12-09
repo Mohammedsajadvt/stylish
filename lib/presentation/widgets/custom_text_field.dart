@@ -8,21 +8,23 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
+  final String? Function(String?)? validator;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.prefixIcon,
     this. suffixIcon,
+    this.validator
   });
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VisibilityBloc, VisibilityState>(
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
           controller: controller,
           obscureText: suffixIcon != null ? !state.isVisible : false,
+          validator: validator,
           decoration: InputDecoration(
             filled: true,
               suffixIcon: suffixIcon != null
@@ -56,8 +58,7 @@ class CustomTextField extends StatelessWidget {
                       color: AppColors.textfieldBorder),
                   borderRadius: BorderRadius.circular(10)),
                   fillColor: AppColors.textfieldBackground,
-                  ),
-                  
+                  ),                  
         );
       },
     );

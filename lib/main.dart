@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
-import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
 import 'package:stylish/routes/app_routes.dart';
 
 void main() async {
