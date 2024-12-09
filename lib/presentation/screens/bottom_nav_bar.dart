@@ -18,7 +18,7 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     // Navigation items/icons
     List<Widget> navigationItems = const [
-      Icon(CupertinoIcons.home),
+      Icon(Icons.home_outlined),
       Icon(CupertinoIcons.search),
       Icon(CupertinoIcons.cart),
       Icon(CupertinoIcons.person),

@@ -13,11 +13,12 @@ class AppRoutes {
   static const String signup = '/signup';
   static const String forgotPassword = '/forgotpassword';
   static const String getstarted = "/getstarted";
+  static const String bottomnavbar = "/bottomnavbar";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashscreen:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashPageWrapper());
       case onboarding:
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen()
@@ -30,6 +31,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());     
       case getstarted:
         return MaterialPageRoute(builder: (_) => const GetstartedScreen());     
+      case bottomnavbar:
+        return MaterialPageRoute(builder: (_) => const BottomAppBar());     
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

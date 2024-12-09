@@ -37,7 +37,9 @@ class GetstartedScreen extends StatelessWidget {
             SizedBox(height:ResponsiveHelper.getScreenHeight(context) * 0.050,),
             Padding(
               padding:  EdgeInsets.only(left:ResponsiveHelper.getScreenHeight(context) * 0.050,right: ResponsiveHelper.getScreenHeight(context) * 0.050),
-              child: GestureDetector(onTap: (){},child: const CustomButton(title: 'Get Started')),
+              child: GestureDetector(onTap: (){
+               Navigator.of(context).pushNamed('/bottomnavbar');
+              },child: const CustomButton(title: 'Get Started')),
             ),
             SizedBox(height:ResponsiveHelper.getScreenHeight(context) * 0.040,),
           ],
