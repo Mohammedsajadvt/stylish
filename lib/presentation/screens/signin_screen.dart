@@ -24,13 +24,12 @@ class SignInScreen extends StatelessWidget {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           Navigator.pushReplacementNamed(context, '/bottomnavbar');
         });
-      }else if (state is AuthendicatedError) {
-          WidgetsBinding.instance.addPostFrameCallback((_){
-            ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Not Registered This Account")),
-          );
-          });
-        }
+      } else if (state is AuthendicatedError) {
+     WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.pushReplacementNamed(context, '/signup');
+        });
+
+      }
 
       return Scaffold(
         backgroundColor: AppColors.primary,
@@ -93,14 +92,10 @@ class SignInScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        try {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<FirebaseAuthBloc>().add(LoginEvent(
-                                email: _emailOrUsernameController.text.trim(),
-                                password: _passwordController.text.trim()));
-                          }
-                        } catch (e) {
-                          
+                        if (_formKey.currentState!.validate()) {
+                          context.read<FirebaseAuthBloc>().add(LoginEvent(
+                              email: _emailOrUsernameController.text.trim(),
+                              password: _passwordController.text.trim()));
                         }
                       },
                       child: const CustomButton(
@@ -154,7 +149,9 @@ class SignInScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            context.read<FirebaseAuthBloc>().add(SigninWithGithub(context));
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(SigninWithGithub(context));
                           },
                           child: Container(
                             decoration: BoxDecoration(
