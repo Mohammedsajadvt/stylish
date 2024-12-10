@@ -35,3 +35,13 @@ class SignInWithFacebook extends FirebaseAuthEvent {}
 class SignUpWithGoogle extends FirebaseAuthEvent {}
 
 class SignUpWithFacebook extends FirebaseAuthEvent {}
+
+class SigninWithGithub extends FirebaseAuthEvent{
+  BuildContext? context;
+  SigninWithGithub(this.context);
+}
+
+class SignupWithGithub extends FirebaseAuthEvent{
+  BuildContext? context;
+  SignupWithGithub(this.context);
+}

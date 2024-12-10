@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:stylish/data/models/user_model.dart';
 
@@ -25,7 +26,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           emit(UnAthendicated());
         }
       } catch (e) {
-        emit(AthendicatedError(message: e.toString()));
+        emit(AuthendicatedError(message: e.toString()));
       }
     });
 
@@ -47,7 +48,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           emit(UnAthendicated());
         }
       } catch (e) {
-        emit(AthendicatedError(message: e.toString()));
+        emit(AuthendicatedError(message: e.toString()));
       }
     });
     on<LogoutEvent>((event, emit) async {
@@ -55,7 +56,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
         await _auth.signOut();
         emit(UnAthendicated());
       } catch (e) {
-        emit(AthendicatedError(message: e.toString()));
+        emit(AuthendicatedError(message: e.toString()));
       }
     });
     on<LoginEvent>(
@@ -71,7 +72,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
             emit(UnAthendicated());
           }
         } catch (e) {
-          emit(AthendicatedError(message: e.toString()));
+          emit(AuthendicatedError(message: e.toString()));
         }
       },
     );
@@ -99,7 +100,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
             emit(UnAthendicated());
           }
         } catch (e) {
-          emit(AthendicatedError(
+          emit(AuthendicatedError(
               message: 'Google sign-in failed: ${e.toString()}'));
         }
       },
@@ -112,13 +113,13 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           final result = await FacebookAuth.instance.login();
           if (result.status == LoginStatus.success) {
             final AuthCredential credential = FacebookAuthProvider.credential(
-                result.accessToken!.tokenString);
+                result.accessToken!.token);
             UserCredential userCredential =
                 await _auth.signInWithCredential(credential);
             emit(AuthendicatedState(userCredential.user!));
           }
         } catch (e) {
-          emit(AthendicatedError(message: e.toString()));
+          emit(AuthendicatedError(message: e.toString()));
         }
       },
     );
@@ -146,7 +147,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
             emit(UnAthendicated());
           }
         } catch (e) {
-          emit(AthendicatedError(
+          emit(AuthendicatedError(
               message: 'Google sign-in failed: ${e.toString()}'));
         }
       },
@@ -158,15 +159,45 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           final result = await FacebookAuth.instance.login();
           if (result.status == LoginStatus.success) {
             final AuthCredential credential = FacebookAuthProvider.credential(
-                result.accessToken!.tokenString);
+                result.accessToken!.token);
             UserCredential userCredential =
                 await _auth.signInWithCredential(credential);
             emit(AuthendicatedState(userCredential.user!));
           }
         } catch (e) {
-          emit(AthendicatedError(message: e.toString()));
+          emit(AuthendicatedError(message: e.toString()));
         }
       },
     );
+    on<SignupWithGithub>((event, emit) async{
+      emit(AuthLoading());
+      try{
+      final GitHubSignIn gitHubSignIn =  GitHubSignIn(clientId: "Ov23ligjnk9Qg539ymRo", clientSecret: "e196c6b37c7565bc41a5301c574d4b9b93adb169", redirectUrl: "https://stylish-3f9c2.firebaseapp.com/__/auth/handler");
+      final result = await gitHubSignIn.signIn(event.context!);
+      final githubAuthCredential = GithubAuthProvider.credential(result.token!);
+
+    final signInWithCredential  =  await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
+
+    emit(AuthendicatedState(signInWithCredential.user!));
+
+      }catch(e){
+      emit((AuthendicatedError(message: e.toString())));
+      }
+    },);
+        on<SigninWithGithub>((event, emit) async{
+      emit(AuthLoading());
+      try{
+      final GitHubSignIn gitHubSignIn =  GitHubSignIn(clientId: "Ov23ligjnk9Qg539ymRo", clientSecret: "e196c6b37c7565bc41a5301c574d4b9b93adb169", redirectUrl: "https://stylish-3f9c2.firebaseapp.com/__/auth/handler");
+      final result = await gitHubSignIn.signIn(event.context!);
+      final githubAuthCredential = GithubAuthProvider.credential(result.token!);
+
+    final signInWithCredential  =  await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
+
+    emit(AuthendicatedState(signInWithCredential.user!));
+
+      }catch(e){
+      emit((AuthendicatedError(message: e.toString())));
+      }
+    },);
   }
 }

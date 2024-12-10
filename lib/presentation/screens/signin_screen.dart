@@ -24,7 +24,13 @@ class SignInScreen extends StatelessWidget {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           Navigator.pushReplacementNamed(context, '/bottomnavbar');
         });
-      }
+      }else if (state is AuthendicatedError) {
+          WidgetsBinding.instance.addPostFrameCallback((_){
+            ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Not Registered This Account")),
+          );
+          });
+        }
 
       return Scaffold(
         backgroundColor: AppColors.primary,
@@ -94,26 +100,7 @@ class SignInScreen extends StatelessWidget {
                                 password: _passwordController.text.trim()));
                           }
                         } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                e.toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              backgroundColor: AppColors.grey,
-                              behavior: SnackBarBehavior.floating,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
+                          
                         }
                       },
                       child: const CustomButton(
@@ -166,7 +153,9 @@ class SignInScreen extends StatelessWidget {
                               ResponsiveHelper.getScreenWidth(context) * 0.025,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            context.read<FirebaseAuthBloc>().add(SigninWithGithub(context));
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,

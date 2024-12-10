@@ -164,7 +164,9 @@ class SignUpScreen extends StatelessWidget {
                                 0.025,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              context.read<FirebaseAuthBloc>().add(SignupWithGithub(context));
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,

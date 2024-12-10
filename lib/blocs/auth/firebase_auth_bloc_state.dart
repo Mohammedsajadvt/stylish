@@ -21,9 +21,9 @@ class AuthendicatedState extends FirebaseAuthState{
 
 class UnAthendicated extends FirebaseAuthState{}
 
-class AthendicatedError extends FirebaseAuthState{
+class AuthendicatedError extends FirebaseAuthState{
   final String message;
-  const AthendicatedError({required this.message});
+  const AuthendicatedError({required this.message});
 }
 
 
