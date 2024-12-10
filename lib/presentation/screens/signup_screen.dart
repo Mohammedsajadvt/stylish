@@ -17,14 +17,13 @@ class SignUpScreen extends StatelessWidget {
     final TextEditingController _emailOrUsernameController =
         TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
-    final authbloc = BlocProvider.of<FirebaseAuthBloc>(context);
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     return BlocBuilder<FirebaseAuthBloc, FirebaseAuthState>(
       builder: (context, state) {
         if (state is AuthendicatedState) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.pushReplacementNamed(context, '/getstarted');
+            Navigator.pushReplacementNamed(context, '/bottomnavbar');
           });
         }
 
@@ -50,7 +49,8 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.040,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.040,
                       ),
                       CustomTextField(
                         controller: _emailOrUsernameController,
@@ -59,7 +59,8 @@ class SignUpScreen extends StatelessWidget {
                         validator: FormValidators.validateEmail,
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.035,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.035,
                       ),
                       CustomTextField(
                         controller: _passwordController,
@@ -68,9 +69,9 @@ class SignUpScreen extends StatelessWidget {
                         suffixIcon: Icons.visibility,
                         validator: FormValidators.validatePassword,
                       ),
-                     
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.025,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.025,
                       ),
                       Row(
                         children: [
@@ -96,24 +97,28 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.050,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.050,
                       ),
                       GestureDetector(
                         onTap: () {
-                         if (_formKey.currentState!.validate()) {
-                              UserModel user = UserModel(
-                                _emailOrUsernameController.text,
-                                _passwordController.text,
-                              );
-                              authbloc.add(SignUpEvent(user: user));
-                            }    
+                          if (_formKey.currentState!.validate()) {
+                            UserModel user = UserModel(
+                              _emailOrUsernameController.text,
+                              _passwordController.text,
+                            );
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(SignUpEvent(user: user));
+                          }
                         },
                         child: const CustomButton(
                           title: 'Create Account',
                         ),
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.060,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.060,
                       ),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -125,14 +130,17 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.030,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.030,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
                             onTap: () {
-                              authbloc.add(SignUpWithGoogle());
+                              context
+                                  .read<FirebaseAuthBloc>()
+                                  .add(SignUpWithGoogle());
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -152,13 +160,11 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width:
-                                ResponsiveHelper.getScreenWidth(context) * 0.025,
+                            width: ResponsiveHelper.getScreenWidth(context) *
+                                0.025,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              authbloc.add(SignUpWithApple());
-                            },
+                            onTap: () {},
                             child: Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -171,18 +177,20 @@ class SignUpScreen extends StatelessWidget {
                                 radius: 28,
                                 backgroundColor: AppColors.primary,
                                 child: Center(
-                                  child: Image.asset(AppImages.apple),
+                                  child: Image.asset(AppImages.github),
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(
-                            width:
-                                ResponsiveHelper.getScreenWidth(context) * 0.025,
+                            width: ResponsiveHelper.getScreenWidth(context) *
+                                0.025,
                           ),
                           GestureDetector(
                             onTap: () {
-                              authbloc.add(SignUpWithFacebook());
+                              context
+                                  .read<FirebaseAuthBloc>()
+                                  .add(SignUpWithFacebook());
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -204,7 +212,8 @@ class SignUpScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: ResponsiveHelper.getScreenHeight(context) * 0.025,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.025,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -218,8 +227,8 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width:
-                                ResponsiveHelper.getScreenWidth(context) * 0.015,
+                            width: ResponsiveHelper.getScreenWidth(context) *
+                                0.015,
                           ),
                           GestureDetector(
                             onTap: () {

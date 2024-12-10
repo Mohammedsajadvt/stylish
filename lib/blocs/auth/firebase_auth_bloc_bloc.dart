@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:stylish/data/models/user_model.dart';
 
 part 'firebase_auth_bloc_event.dart';
@@ -105,28 +104,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
         }
       },
     );
-    on<SignInApple>(
-      (event, emit) async {
-        emit(AuthLoading());
-        try {
-          final appleCredential =
-              await SignInWithApple.getAppleIDCredential(scopes: [
-            AppleIDAuthorizationScopes.email,
-            AppleIDAuthorizationScopes.fullName,
-          ]);
-          final AuthCredential credential =
-              OAuthProvider('apple.com').credential(
-            idToken: appleCredential.identityToken,
-            accessToken: appleCredential.authorizationCode,
-          );
-          UserCredential userCredential =
-              await _auth.signInWithCredential(credential);
-          emit(AuthendicatedState(userCredential.user!));
-        } catch (e) {
-          emit(AthendicatedError(message: e.toString()));
-        }
-      },
-    );
+
     on<SignInWithFacebook>(
       (event, emit) async {
         emit(AuthLoading());
@@ -170,28 +148,6 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
         } catch (e) {
           emit(AthendicatedError(
               message: 'Google sign-in failed: ${e.toString()}'));
-        }
-      },
-    );
-    on<SignUpWithApple>(
-      (event, emit) async {
-        emit(AuthLoading());
-        try {
-          final appleCredential =
-              await SignInWithApple.getAppleIDCredential(scopes: [
-            AppleIDAuthorizationScopes.email,
-            AppleIDAuthorizationScopes.fullName,
-          ]);
-          final AuthCredential credential =
-              OAuthProvider('apple.com').credential(
-            idToken: appleCredential.identityToken,
-            accessToken: appleCredential.authorizationCode,
-          );
-          UserCredential userCredential =
-              await _auth.signInWithCredential(credential);
-          emit(AuthendicatedState(userCredential.user!));
-        } catch (e) {
-          emit(AthendicatedError(message: e.toString()));
         }
       },
     );

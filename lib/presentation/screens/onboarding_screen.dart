@@ -10,6 +10,7 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: IntroductionScreen(
+          globalBackgroundColor: AppColors.primary,
             pages: [
               PageViewModel(
                 title: "Choose Products",

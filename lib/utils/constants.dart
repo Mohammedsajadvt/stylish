@@ -1,4 +1,5 @@
 // Images
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppImages {
@@ -7,7 +8,7 @@ class AppImages {
       "assets/images/Sales consulting-pana 1.png";
   static const String shoppingBag = "assets/images/Shopping bag-rafiki 1.png";
   static const String logo = "assets/icons/logoipsum-255 1.png";
-  static const String apple = "assets/icons/apple.png";
+  static const String github = "assets/icons/github.png";
   static const String facebook = "assets/icons/facebook.png";
   static const String google = "assets/icons/google.png";
   static const String cloth = "assets/images/cloth.png";
@@ -26,4 +27,7 @@ class AppColors {
   static const Color textfieldHintText = Color(0xff676767);
   static const Color textfieldBorder = Color(0xffA8A8A97);
   static const textfieldBackground = Color(0xffF3F3F3);
+
+  // SnackBar
+  static const snackBar = Color(0xFF323232); 
 }

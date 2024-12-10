@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
-import 'package:stylish/data/models/user_model.dart';
 import 'package:stylish/presentation/widgets/custom_button.dart';
 import 'package:stylish/presentation/widgets/custom_text_field.dart';
 import 'package:stylish/presentation/widgets/cutom_title.dart';
@@ -14,12 +13,13 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _emailOrUsernameController = TextEditingController();
+    final TextEditingController _emailOrUsernameController =
+        TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
     final _formKey = GlobalKey<FormState>();
-    final authbloc = BlocProvider.of<FirebaseAuthBloc>(context);
-    
-    return BlocBuilder<FirebaseAuthBloc, FirebaseAuthState>(builder: (context, state) {
+
+    return BlocBuilder<FirebaseAuthBloc, FirebaseAuthState>(
+        builder: (context, state) {
       if (state is AuthendicatedState) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           Navigator.pushReplacementNamed(context, '/bottomnavbar');
@@ -31,9 +31,9 @@ class SignInScreen extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(
-              left: ResponsiveHelper.getScreenWidth(context) * 0.080,
-              right: ResponsiveHelper.getScreenWidth(context) * 0.080,
-              top: ResponsiveHelper.getScreenWidth(context) * 0.100),
+                left: ResponsiveHelper.getScreenWidth(context) * 0.080,
+                right: ResponsiveHelper.getScreenWidth(context) * 0.080,
+                top: ResponsiveHelper.getScreenWidth(context) * 0.100),
             child: SingleChildScrollView(
               child: Form(
                 key: _formKey,
@@ -86,10 +86,35 @@ class SignInScreen extends StatelessWidget {
                       height: ResponsiveHelper.getScreenHeight(context) * 0.050,
                     ),
                     GestureDetector(
-                      onTap: () {
-                       if (_formKey.currentState!.validate()) {
-                            authbloc.add(LoginEvent(email: _emailOrUsernameController.text.trim(), password: _passwordController.text.trim()));
+                      onTap: () async {
+                        try {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<FirebaseAuthBloc>().add(LoginEvent(
+                                email: _emailOrUsernameController.text.trim(),
+                                password: _passwordController.text.trim()));
                           }
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                e.toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              backgroundColor: AppColors.grey,
+                              behavior: SnackBarBehavior.floating,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+                        }
                       },
                       child: const CustomButton(
                         title: 'Login',
@@ -115,7 +140,9 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            authbloc.add(SignInWithGoogle());
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(SignInWithGoogle());
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -135,12 +162,11 @@ class SignInScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: ResponsiveHelper.getScreenWidth(context) * 0.025,
+                          width:
+                              ResponsiveHelper.getScreenWidth(context) * 0.025,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            authbloc.add(SignInApple());
-                          },
+                          onTap: () {},
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -153,17 +179,20 @@ class SignInScreen extends StatelessWidget {
                               radius: 28,
                               backgroundColor: AppColors.primary,
                               child: Center(
-                                child: Image.asset(AppImages.apple),
+                                child: Image.asset(AppImages.github),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: ResponsiveHelper.getScreenWidth(context) * 0.025,
+                          width:
+                              ResponsiveHelper.getScreenWidth(context) * 0.025,
                         ),
                         GestureDetector(
                           onTap: () {
-                            authbloc.add(SignInWithFacebook());
+                            context
+                                .read<FirebaseAuthBloc>()
+                                .add(SignInWithFacebook());
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -193,10 +222,13 @@ class SignInScreen extends StatelessWidget {
                         Text(
                           'Create An Account',
                           style: TextStyle(
-                            fontSize: ResponsiveHelper.getScreenHeight(context) * 0.020),
+                              fontSize:
+                                  ResponsiveHelper.getScreenHeight(context) *
+                                      0.020),
                         ),
                         SizedBox(
-                          width: ResponsiveHelper.getScreenWidth(context) * 0.015,
+                          width:
+                              ResponsiveHelper.getScreenWidth(context) * 0.015,
                         ),
                         GestureDetector(
                           onTap: () {
@@ -205,10 +237,12 @@ class SignInScreen extends StatelessWidget {
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: AppColors.red,
-                              fontSize: ResponsiveHelper.getScreenHeight(context) * 0.020,
-                              fontWeight: FontWeight.bold),
+                                decoration: TextDecoration.underline,
+                                color: AppColors.red,
+                                fontSize:
+                                    ResponsiveHelper.getScreenHeight(context) *
+                                        0.020,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
