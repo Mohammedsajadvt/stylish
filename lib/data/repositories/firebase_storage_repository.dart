@@ -6,6 +6,8 @@ class FirestoreRepository {
   Stream<List<Map<String, dynamic>>> getProducts() {
     return _firestore.collection('categories').snapshots().map(
           (snapshot) => snapshot.docs.map((doc) => doc.data()).toList(),
-        );
+        ).handleError((error) {
+          print('Error fetching products: $error');
+        });
   }
 }
