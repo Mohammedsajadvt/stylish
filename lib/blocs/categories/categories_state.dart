@@ -8,7 +8,7 @@ class CategoriesState extends Equatable {
 class CategoriesLoading extends CategoriesState {}
 
 class CategoriesLoaded extends CategoriesState {
-  final List<Map<String, String>> categories;
+  final List<Map<String, dynamic>> categories;
 
   CategoriesLoaded(this.categories);
 

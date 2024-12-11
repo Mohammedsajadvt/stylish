@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
-import 'package:stylish/utils/constants.dart';
+import 'package:stylish/data/models/categories_model.dart';
 import 'package:stylish/utils/helpers.dart';
 
 class CategoriesHorizontalList extends StatelessWidget {
-  CategoriesHorizontalList({super.key});
+  const CategoriesHorizontalList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ class CategoriesHorizontalList extends StatelessWidget {
             itemCount: state.categories.length,
             itemBuilder: (context, index) {
               final category = state.categories[index];
+              CategoriesModel? model;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
@@ -27,7 +28,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        print("Tapped on ${category['name']}");
+                        debugPrint("Tapped on ${category['name']}");
                       },
                       child: Container(
                         width: ResponsiveHelper.getScreenWidth(context) * 0.15,
@@ -35,7 +36,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(category['image']!),
+                            image: NetworkImage(model!.image),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -43,7 +44,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      category['name']!,
+                      model.name,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
