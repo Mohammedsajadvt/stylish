@@ -88,14 +88,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/logo/
-    - assets/home/
-    - assets/mens/
-    - assets/womens/
-    - assets/fashion/
-    - assets/deals/
     - assets/categories/
-    - assets/beauty/
-    - assets/kids/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

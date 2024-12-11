@@ -173,15 +173,14 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Container(
                   width: double.infinity,
-                  height: ResponsiveHelper.getScreenHeight(context) * 0.130,
+                  height: ResponsiveHelper.getScreenHeight(context) * 0.140,
                   decoration: BoxDecoration(
                       color: AppColors.primary,
                       borderRadius: BorderRadius.circular(10)),
                   child: Align(
                       alignment: Alignment.center,
                       child: Padding(
-                        padding: EdgeInsets.all(
-                            ResponsiveHelper.getScreenHeight(context) * 0.012),
+                        padding: EdgeInsets.symmetric(horizontal: ResponsiveHelper.getScreenHeight(context) * 0.012,vertical: ResponsiveHelper.getScreenHeight(context) * 0.012),
                         child: CategoriesHorizontalList(),
                       )),
                 ),
@@ -205,20 +204,20 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   height: ResponsiveHelper.getScreenHeight(context) * 0.080,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(ResponsiveHelper.getScreenHeight(context) *0.008),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
+                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               'Deal of the Day',
                               style: TextStyle(
-                                  color: AppColors.primary, fontSize: 18),
+                                  color: AppColors.primary, fontSize: ResponsiveHelper.getScreenHeight(context) *0.020),
                             ),
-                            Row(
+                            const Row(
                               children: [
                                 Icon(
                                   Icons.av_timer,
@@ -248,7 +247,83 @@ class HomeScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Shop Now',
+                                    'View all',
+                                    style: TextStyle(
+                                        fontSize: ResponsiveHelper.getScreenHeight(
+                                                context) *
+                                            0.022,
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_forward,
+                                    color: AppColors.primary,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: ResponsiveHelper.getScreenHeight(context) * 0.020,),
+                Row(children: [
+                //  Container(child: Column(children: [],),width:  double.infinity,height: ResponsiveHelper.getScreenHeight(context) * 300,decoration: BoxDecoration(color: AppColors.primary,borderRadius: BorderRadius.circular(10)))
+                ],),
+                SizedBox(height: ResponsiveHelper.getScreenHeight(context) * 0.020,),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.pink),
+                  width: double.infinity,
+                  height: ResponsiveHelper.getScreenHeight(context) * 0.080,
+                  child: Padding(
+                    padding:  EdgeInsets.all(ResponsiveHelper.getScreenHeight(context) *0.008),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Trending Products ',
+                              style: TextStyle(
+                                  color: AppColors.primary, fontSize:ResponsiveHelper.getScreenHeight(context) *0.020),
+                            ),
+                            const Row(
+                              children: [
+                                Icon(
+                                  Icons.calendar_month,
+                                  color: AppColors.primary,
+                                ),
+                                Text(
+                                  'Last Date 29/02/22',
+                                  style: TextStyle(color: AppColors.primary),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: (){},
+                          child: Container(
+                            width: ResponsiveHelper.getScreenHeight(context) *
+                                  0.150,
+                              height: ResponsiveHelper.getScreenHeight(context) *
+                                  0.040,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: AppColors.pink,
+                                  border: Border.all(color: AppColors.primary)),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'View all',
                                     style: TextStyle(
                                         fontSize: ResponsiveHelper.getScreenHeight(
                                                 context) *

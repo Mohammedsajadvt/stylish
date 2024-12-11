@@ -1,5 +1,9 @@
-part of 'categories_bloc.dart';
+import 'package:equatable/equatable.dart';
 
-sealed class CategoriesEvent extends Equatable {
-  const CategoriesEvent();
+
+class CategoriesEvent extends Equatable {
+  @override
+  List<Object> get props => [];
 }
+
+class LoadCategories extends CategoriesEvent {}
