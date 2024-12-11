@@ -7,7 +7,7 @@ import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_event.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_state.dart';
 import 'package:stylish/presentation/screens/cart_screen.dart';
 import 'package:stylish/presentation/screens/home_screen.dart';
-import 'package:stylish/presentation/screens/search_screen.dart';
+import 'package:stylish/presentation/screens/wishlist_screen.dart';
 import 'package:stylish/presentation/screens/settings_screen.dart';
 import 'package:stylish/utils/constants.dart';
 
@@ -19,7 +19,7 @@ class BottomNavBar extends StatelessWidget {
     // Navigation items/icons
     List<Widget> navigationItems = const [
       Icon(Icons.home_outlined),
-      Icon(CupertinoIcons.search),
+      Icon(CupertinoIcons.heart),
       Icon(CupertinoIcons.cart),
       Icon(CupertinoIcons.person),
     ];
@@ -27,7 +27,7 @@ class BottomNavBar extends StatelessWidget {
     // Screens for each navigation item
     List<Widget> screens = const [
       HomeScreen(),
-      SearchScreen(),
+      WishlistScreen(),
       CartScreen(),
       ProfileScreen()
     ];
