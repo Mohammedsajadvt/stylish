@@ -25,22 +25,4 @@ class FirestoreRepository {
 
     
   }
-
-  Future<List<CarouselModel>> getCarousel()async{
-    final List<CarouselModel> carouselList = [];
-    try{
-      final carousel = await FirebaseFirestore.instance.collection('carouselslider').get();
-      carousel.docs.forEach((element){
-        return carouselList.add(CarouselModel.fromJson(element.data()));
-      });
-      return carouselList;
-    }on FirebaseException catch(e){
-      if(kDebugMode){
-      print("Failed with error'${e.code}':'${e.message}'");
-      }
-      return carouselList;
-    }catch (e){
-      throw Exception(e.toString());
-    }
-  }
 }

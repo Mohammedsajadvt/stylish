@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
+import 'package:stylish/blocs/carousel_slider/carousel_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
-import 'package:stylish/blocs/slider/carousel_bloc.dart';
+import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
 import 'package:stylish/routes/app_routes.dart';
 
@@ -25,10 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => VisibilityBloc()),
         BlocProvider(create: (_) => BottomNavigationBloc()),
-        BlocProvider(create: (_) => FirebaseAuthBloc()),
         BlocProvider(create: (_) => CarouselBloc()),
+        BlocProvider(create: (_) => CategoriesBloc()..add(GetCategories())),
         BlocProvider(create: (_) => FirebaseAuthBloc()..add(CheckLoginStatusEvent())),
-        BlocProvider(create: (_) => CategoriesBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
