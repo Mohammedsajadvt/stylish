@@ -33,16 +33,9 @@ class CategoriesHorizontalList extends StatelessWidget {
                       onTap: () {
                         debugPrint("Tapped on ${category[index].name}");
                       },
-                      child: Container(
-                        width: ResponsiveHelper.getScreenWidth(context) * 0.15,
-                        height: ResponsiveHelper.getScreenWidth(context) * 0.15,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(category[index].image),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      child: CircleAvatar(
+                        radius: ResponsiveHelper.getScreenWidth(context) * 0.075,
+                        backgroundImage: NetworkImage(category[index].image),
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -59,6 +52,7 @@ class CategoriesHorizontalList extends StatelessWidget {
             },
           );
         } else if (state is CategoriesError) {
+          print(state.message);
           return Center(child: Text('Error: ${state.message}'));
         } else {
           return const Center(child: Text('No categories available.'));

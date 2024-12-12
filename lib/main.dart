@@ -27,8 +27,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => VisibilityBloc()),
         BlocProvider(create: (_) => BottomNavigationBloc()),
         BlocProvider(create: (_) => CarouselBloc()),
-        BlocProvider(create: (_) => CategoriesBloc()..add(GetCategories())),
         BlocProvider(create: (_) => FirebaseAuthBloc()..add(CheckLoginStatusEvent())),
+        BlocProvider(create: (_) => CategoriesBloc()..add(GetCategories())),
+
+
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
