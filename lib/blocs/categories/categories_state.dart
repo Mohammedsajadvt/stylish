@@ -1,17 +1,20 @@
 import 'package:equatable/equatable.dart';
+import 'package:stylish/data/models/categories_model.dart';
 
-class CategoriesState extends Equatable {
+abstract class CategoriesState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
+class InitialState extends CategoriesState{}
+
 class CategoriesLoading extends CategoriesState {}
 
 class CategoriesLoaded extends CategoriesState {
-  final List<Map<String, dynamic>> categories;
+   List<CategoriesModel> categories;
 
-  CategoriesLoaded(this.categories);
-
+   CategoriesLoaded(this.categories);
+  
   @override
   List<Object> get props => [categories];
 }

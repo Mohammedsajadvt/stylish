@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
 import 'package:stylish/data/models/categories_model.dart';
+import 'package:stylish/utils/constants.dart';
 import 'package:stylish/utils/helpers.dart';
 
 class CategoriesHorizontalList extends StatelessWidget {
@@ -13,14 +14,16 @@ class CategoriesHorizontalList extends StatelessWidget {
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
         if (state is CategoriesLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: AppColors.red,
+          ));
         } else if (state is CategoriesLoaded) {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: state.categories.length,
             itemBuilder: (context, index) {
-              final category = state.categories[index];
-              CategoriesModel? model;
+              final List<CategoriesModel> category = state.categories;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
@@ -28,7 +31,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        debugPrint("Tapped on ${category['name']}");
+                        debugPrint("Tapped on ${category[index].name}");
                       },
                       child: Container(
                         width: ResponsiveHelper.getScreenWidth(context) * 0.15,
@@ -36,7 +39,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: NetworkImage(model!.image),
+                            image: NetworkImage(category[index].image),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -44,7 +47,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      model.name,
+                      category[index].name,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
