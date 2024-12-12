@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stylish/data/models/categories_model.dart';
+import 'package:stylish/data/models/product_model.dart';
 
 class FirestoreRepository {
   Future<List<CategoriesModel>> getCategories() async {
@@ -21,5 +23,26 @@ class FirestoreRepository {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  Future<List<ProductModel>> getWomensData() async {
+    List<ProductModel> getWomensDataList = [];
+    try {
+      final getWomensData = await FirebaseFirestore.instance
+          .collection('categories')
+          .doc('tNBypf19dQ7VQqx0vmL9')
+          .get();
+
+      if (getWomensData.exists) {
+        List<dynamic> womens = getWomensData.data()?['womens'] ?? [];
+        for (var womens in womens) {
+          getWomensDataList.add(ProductModel.fromJson(womens));
+        }
+      }
+    } catch (e) {
+      print("Error fetching women's data: $e");
+    }
+
+    return getWomensDataList;
   }
 }
