@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
-import 'package:stylish/blocs/womens_data/womens_data_bloc.dart';
-import 'package:stylish/blocs/womens_data/womens_data_state.dart';
+import 'package:stylish/blocs/products/product_data_bloc.dart';
+import 'package:stylish/blocs/products/product_data_event.dart';
+import 'package:stylish/blocs/products/product_data_state.dart';
 import 'package:stylish/data/models/product_model.dart';
 import 'package:stylish/presentation/widgets/carousel_slider.dart';
 import 'package:stylish/presentation/widgets/categories_horizontal_list.dart';
@@ -320,7 +321,7 @@ class HomeScreen extends StatelessWidget {
                         height:
                             ResponsiveHelper.getScreenHeight(context) * 0.020,
                       ),
-                      ProductCard(),
+                      const ProductCard(event: GetWomensData(),),
                       SizedBox(
                         height:
                             ResponsiveHelper.getScreenHeight(context) * 0.020,

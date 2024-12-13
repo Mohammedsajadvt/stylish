@@ -5,7 +5,7 @@ import 'package:stylish/data/models/categories_model.dart';
 import 'package:stylish/data/models/product_model.dart';
 
 class FirestoreRepository {
-  Future<List<CategoriesModel>> getCategories() async {
+   getCategories() async {
     List<CategoriesModel> categoriesList = [];
     try {
       final categories =
@@ -25,7 +25,7 @@ class FirestoreRepository {
     }
   }
 
-  Future<List<ProductModel>> getWomensData() async {
+    getWomensData() async {
     List<ProductModel> getWomensDataList = [];
     try {
       final getWomensData = await FirebaseFirestore.instance
