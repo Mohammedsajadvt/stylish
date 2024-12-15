@@ -49,4 +49,5 @@ class AppColors {
   static const circleColor = Color(0xffF2F2F2);
   // SearchTextField
   static const searchTextFieldIconColor = Color(0xffBBBBBB);
+  static const star = Colors.yellow;
 }
