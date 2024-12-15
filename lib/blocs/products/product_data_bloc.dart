@@ -18,5 +18,16 @@ class ProductDataBloc extends Bloc<ProductDataEvent, ProductDataState> {
       }
       
     });
+    on<GetmensData>((event, emit)async {
+      emit(ProductDataLoading());
+      await Future.delayed(const Duration(seconds: 1));
+
+      try{
+       final List<ProductModel> mensData = await FirestoreRepository().getMensData();
+       emit(ProductDataLoaded(mensData));
+      }catch(e){
+      emit(ProductDataError(e.toString()));
+      }
+    },);
   }
 }

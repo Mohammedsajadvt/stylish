@@ -23,9 +23,7 @@ class ProductCard extends StatelessWidget {
         child: BlocBuilder<ProductDataBloc, ProductDataState>(
           builder: (context, state) {
             if (state is ProductDataLoading) {
-              return const CircularProgressIndicator(
-                color: AppColors.red,
-              );
+              return Container();
             } else if (state is ProductDataLoaded) {
               final productData = state.productData;
               return ListView.builder(
@@ -52,16 +50,16 @@ class ProductCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(
-                                  height:
-                                      ResponsiveHelper.getScreenHeight(context) *
-                                          0.010,
+                                  height: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.010,
                                 ),
                                 Image.network(
                                   product.image,
                                   fit: BoxFit.cover,
-                                  height:
-                                      ResponsiveHelper.getScreenHeight(context) *
-                                          0.150,
+                                  height: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.150,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -137,9 +135,7 @@ class ProductCard extends StatelessWidget {
                             top: 8,
                             right: 8,
                             child: GestureDetector(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: const Icon(
                                 Icons.favorite_border,
                                 color: AppColors.red,

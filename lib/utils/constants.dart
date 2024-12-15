@@ -17,6 +17,8 @@ class AppImages {
   static const String short = "assets/icons/Vector.png";
   static const String filter = "assets/icons/Component.png";
   static const String carouselImage = "assets/images/carouselslider.png";
+  static const String offer = "assets/deals/offer.png";
+  static const String heel = "assets/deals/deals.png";
 }
 
 // Product Images

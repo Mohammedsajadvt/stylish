@@ -12,6 +12,7 @@ class WishlistScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: ResponsiveHelper.getScreenWidth(context) * 0.020),
       child: Scaffold(
         appBar: AppBar(
+            scrolledUnderElevation: 0,
             backgroundColor: AppColors.backgroundColor,
             actions: [
               Padding(

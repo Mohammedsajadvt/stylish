@@ -42,4 +42,20 @@ class FirestoreRepository {
 
     return getWomensDataList;
   }
+
+  Future<List<ProductModel>> getMensData() async {
+    List<ProductModel> getMensDataList = [];
+    try {
+      final getMensData = await FirebaseFirestore.instance
+          .collection('categories')
+          .doc('32HAp54qkebJHhDlc7QD')
+          .collection('mens')
+          .get();
+
+      getMensDataList = getMensData.docs.map((doc)=>ProductModel.fromJson(doc.data())).toList();    
+    } catch (e) {
+      print("Error fetching men's data: $e");
+    }
+    return getMensDataList;
+  }
 }

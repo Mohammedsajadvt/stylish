@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class ProductModel {
   final String name;
   final String description;

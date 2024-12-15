@@ -3,10 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
-import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/products/product_data_event.dart';
-import 'package:stylish/blocs/products/product_data_state.dart';
-import 'package:stylish/data/models/product_model.dart';
 import 'package:stylish/presentation/widgets/carousel_slider.dart';
 import 'package:stylish/presentation/widgets/categories_horizontal_list.dart';
 import 'package:stylish/presentation/widgets/product_card.dart';
@@ -27,6 +24,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
           backgroundColor: AppColors.backgroundColor,
+          scrolledUnderElevation: 0,
           actions: [
             Padding(
               padding: EdgeInsets.all(
@@ -321,7 +319,164 @@ class HomeScreen extends StatelessWidget {
                         height:
                             ResponsiveHelper.getScreenHeight(context) * 0.020,
                       ),
-                      const ProductCard(event: GetWomensData(),),
+                      const ProductCard(
+                        event: GetWomensData(),
+                      ),
+                      SizedBox(
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.020,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.primary,
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              AppImages.offer,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(
+                              width: ResponsiveHelper.getScreenWidth(context) *
+                                  0.080,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Special Offers',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              ResponsiveHelper.getScreenHeight(
+                                                      context) *
+                                                  0.020),
+                                    ),
+                                    SizedBox(
+                                      width: ResponsiveHelper.getScreenWidth(
+                                              context) *
+                                          0.020,
+                                    ),
+                                    Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: AppColors.grey),
+                                            color: AppColors.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Text('😱'))
+                                  ],
+                                ),
+                                Text(
+                                    'We make sure you get the\noffer you need at best prices')
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.020,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.250,
+                        decoration: BoxDecoration(
+                          color: AppColors.backgroundColor,
+                          border: Border(
+                            left: BorderSide(
+                                color: Colors.orange,
+                                width:
+                                    ResponsiveHelper.getScreenWidth(context) *
+                                        0.030),
+                            right:
+                                BorderSide(color: AppColors.primary, width: 10),
+                            top:
+                                BorderSide(color: AppColors.primary, width: 10),
+                            bottom:
+                                BorderSide(color: AppColors.primary, width: 10),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(AppImages.heel),
+                                SizedBox(
+                                    width: ResponsiveHelper.getScreenWidth(
+                                            context) *
+                                        0.020),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Flat and Heels',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            ResponsiveHelper.getScreenHeight(
+                                                    context) *
+                                                0.030,
+                                      ),
+                                    ),
+                                     SizedBox(
+                                    height: ResponsiveHelper.getScreenHeight(
+                                            context) *
+                                        0.020),
+                                    GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  width: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.150,
+                                  height: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.040,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: AppColors.pink,
+                                      border:
+                                          Border.all(color: AppColors.primary)),
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Visit now',
+                                          style: TextStyle(
+                                              fontSize: ResponsiveHelper
+                                                      .getScreenHeight(
+                                                          context) *
+                                                  0.022,
+                                              color: AppColors.primary,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        const Icon(
+                                          Icons.arrow_forward,
+                                          color: AppColors.primary,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         height:
                             ResponsiveHelper.getScreenHeight(context) * 0.020,
@@ -409,7 +564,12 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                      )
+                      ),
+                      SizedBox(
+                        height:
+                            ResponsiveHelper.getScreenHeight(context) * 0.020,
+                      ),
+                      const ProductCard(event: GetmensData()),
                     ],
                   ),
                 ),

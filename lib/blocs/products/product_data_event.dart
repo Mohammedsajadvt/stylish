@@ -12,3 +12,7 @@ abstract class ProductDataEvent extends Equatable {
 class GetWomensData extends ProductDataEvent{
   const GetWomensData();
 }
+
+class GetmensData extends ProductDataEvent{
+  const GetmensData();
+}
