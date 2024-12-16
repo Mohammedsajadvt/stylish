@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/data/models/product_model.dart';
 import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
 import 'package:stylish/presentation/screens/forgot_password_screen.dart';
 import 'package:stylish/presentation/screens/onboarding_screen.dart';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String productDetails = "/productdetails";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    ProductModel? products;
     switch (settings.name) {
       case splashscreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
@@ -37,7 +39,7 @@ class AppRoutes {
       case product:
         return MaterialPageRoute(builder: (_)=> const ProductScreen());     
       case productDetails:
-        return MaterialPageRoute(builder: (_)=> const ProductDetailScreen());     
+        return MaterialPageRoute(builder: (_)=> ProductDetailScreen(product: products!,));     
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

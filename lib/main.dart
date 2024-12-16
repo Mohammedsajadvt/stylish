@@ -9,6 +9,7 @@ import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/favorite/favorite_bloc.dart';
 import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
+import 'package:stylish/presentation/screens/product_details_screen.dart';
 import 'package:stylish/routes/app_routes.dart';
 
 void main() async {

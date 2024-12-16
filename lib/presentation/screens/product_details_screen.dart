@@ -8,16 +8,15 @@ import 'package:stylish/utils/constants.dart';
 import 'package:stylish/presentation/widgets/product_rating.dart';
 
 class ProductDetailScreen extends StatelessWidget {
+  final ProductModel product;
 
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    ProductModel? product; 
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(product!.name),
+        title: Text(product.name),
       ),
       body: SingleChildScrollView(
         child: Padding(

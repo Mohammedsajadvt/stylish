@@ -6,6 +6,7 @@ import 'package:stylish/blocs/favorite/favorite_state.dart';
 import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/products/product_data_event.dart';
 import 'package:stylish/blocs/products/product_data_state.dart';
+import 'package:stylish/presentation/screens/product_details_screen.dart';
 import 'package:stylish/presentation/widgets/product_card.dart';
 import 'package:stylish/presentation/widgets/product_rating.dart';
 import 'package:stylish/utils/constants.dart';
@@ -39,11 +40,13 @@ class ProductScreen extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           scrolledUnderElevation: 0,
           centerTitle: true,
-          leading: IconButton(onPressed: (){
-            Navigator.of(context).pushNamed('/home');
-          }, icon:Icon(Icons.arrow_back_ios) ),
-          title:
-              Text(productEvent == 'Mens' ? 'Men\'s Products' : 'Women\'s Products'),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+          title: Text(
+              productEvent == 'Mens' ? 'Men\'s Products' : 'Women\'s Products'),
         ),
         body: BlocBuilder<ProductDataBloc, ProductDataState>(
           builder: (context, state) {
@@ -57,120 +60,136 @@ class ProductScreen extends StatelessWidget {
                   vertical: ResponsiveHelper.getScreenHeight(context) * 0.02,
                 ),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Two products per row
+                  crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.7, // Adjust to control card height
+                  childAspectRatio: 0.7,
                 ),
                 itemCount: productData.length,
                 itemBuilder: (context, index) {
                   final product = productData[index];
-                  return Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.primary,
-                          borderRadius: BorderRadius.circular(10),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) =>
+                              ProductDetailScreen(product: product)));
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height:
+                                    ResponsiveHelper.getScreenHeight(context) *
+                                        0.01,
+                              ),
+                              Image.network(
+                                product.image,
+                                fit: BoxFit.cover,
+                                height:
+                                    ResponsiveHelper.getScreenHeight(context) *
+                                        0.15,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.008,
+                                  top: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.008,
+                                ),
+                                child: Text(
+                                  product.name,
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.008,
+                                  top: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.005,
+                                ),
+                                child: Text(
+                                  product.description,
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 10),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.008,
+                                  top: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.004,
+                                ),
+                                child: Text(
+                                  '₹${product.price}',
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.008,
+                                  top: ResponsiveHelper.getScreenHeight(
+                                          context) *
+                                      0.002,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ProductRating(rating: product.rating),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height:
-                                  ResponsiveHelper.getScreenHeight(context) *
-                                      0.01,
-                            ),
-                            Image.network(
-                              product.image,
-                              fit: BoxFit.cover,
-                              height: ResponsiveHelper.getScreenHeight(context) *
-                                  0.15,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: ResponsiveHelper.getScreenHeight(context) *
-                                    0.008,
-                                top: ResponsiveHelper.getScreenHeight(context) *
-                                    0.008,
+                        BlocBuilder<FavoriteBloc, FavoriteState>(
+                          builder: (context, state) {
+                            bool isFavorite = false;
+                            if (state is FavoriteUpdated) {
+                              isFavorite = state.favorite.contains(product);
+                            }
+                            return Positioned(
+                              top: 8,
+                              right: 8,
+                              child: IconButton(
+                                icon: Icon(
+                                  isFavorite
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: isFavorite ? AppColors.red : null,
+                                ),
+                                onPressed: () {
+                                  context
+                                      .read<FavoriteBloc>()
+                                      .add(ToggleFavoriteEvent(product));
+                                },
                               ),
-                              child: Text(
-                                product.name,
-                                style: const TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: ResponsiveHelper.getScreenHeight(context) *
-                                    0.008,
-                                top: ResponsiveHelper.getScreenHeight(context) *
-                                    0.005,
-                              ),
-                              child: Text(
-                                product.description,
-                                style: const TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 10),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: ResponsiveHelper.getScreenHeight(context) *
-                                    0.008,
-                                top: ResponsiveHelper.getScreenHeight(context) *
-                                    0.004,
-                              ),
-                              child: Text(
-                                '₹${product.price}',
-                                style: const TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: ResponsiveHelper.getScreenHeight(context) *
-                                    0.008,
-                                top: ResponsiveHelper.getScreenHeight(context) *
-                                    0.002,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ProductRating(rating: product.rating),
-                                ],
-                              ),
-                            ),
-                          ],
+                            );
+                          },
                         ),
-                      ),
-                      BlocBuilder<FavoriteBloc, FavoriteState>(
-                        builder: (context, state) {
-                          bool isFavorite = false;
-                          if (state is FavoriteUpdated) {
-                            isFavorite = state.favorite.contains(product);
-                          }
-                          return Positioned(
-                            top: 8,
-                            right: 8,
-                            child: IconButton(
-                              icon: Icon(
-                                isFavorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: isFavorite ? AppColors.red : null,
-                              ),
-                              onPressed: () {
-                                context
-                                    .read<FavoriteBloc>()
-                                    .add(ToggleFavoriteEvent(product));
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               );
