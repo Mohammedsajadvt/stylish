@@ -104,8 +104,8 @@ class SignUpScreen extends StatelessWidget {
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             UserModel user = UserModel(
-                              _emailOrUsernameController.text,
-                              _passwordController.text,
+                              email: _emailOrUsernameController.text,
+                              password: _passwordController.text,
                             );
                             context
                                 .read<FirebaseAuthBloc>()
@@ -165,7 +165,9 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              context.read<FirebaseAuthBloc>().add(SignupWithGithub(context));
+                              context
+                                  .read<FirebaseAuthBloc>()
+                                  .add(SignupWithGithub(context));
                             },
                             child: Container(
                               decoration: BoxDecoration(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/blocs/favorite/favorite_bloc.dart';
+import 'package:stylish/blocs/favorite/favorite_event.dart';
+import 'package:stylish/blocs/favorite/favorite_state.dart';
 import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/products/product_data_event.dart';
 import 'package:stylish/blocs/products/product_data_state.dart';
@@ -131,17 +134,29 @@ class ProductCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Positioned(
-                            top: 8,
-                            right: 8,
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: const Icon(
-                                Icons.favorite_border,
-                                color: AppColors.red,
-                                size: 24,
-                              ),
-                            ),
+                          BlocBuilder<FavoriteBloc, FavoriteState>(
+                            builder: (context, state) {
+                              bool isFavorite = false;
+                              if (state is FavoriteUpdated) {
+                                isFavorite = state.favorite.contains(product);
+                              }
+                              return Positioned(
+                                  top: 8,
+                                  right: 8,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: isFavorite ? AppColors.red : null,
+                                    ),
+                                    onPressed: () {
+                                      context
+                                          .read<FavoriteBloc>()
+                                          .add(ToggleFavoriteEvent(product));
+                                    },
+                                  ));
+                            },
                           ),
                         ],
                       ),

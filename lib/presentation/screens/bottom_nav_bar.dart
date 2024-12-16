@@ -8,7 +8,7 @@ import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_state.dart';
 import 'package:stylish/presentation/screens/cart_screen.dart';
 import 'package:stylish/presentation/screens/home_screen.dart';
 import 'package:stylish/presentation/screens/wishlist_screen.dart';
-import 'package:stylish/presentation/screens/settings_screen.dart';
+import 'package:stylish/presentation/screens/profile_screen.dart';
 import 'package:stylish/utils/constants.dart';
 
 class BottomNavBar extends StatelessWidget {
