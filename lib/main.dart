@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
 import 'package:stylish/blocs/carousel_slider/carousel_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/favorite/favorite_bloc.dart';
 import 'package:stylish/blocs/products/product_data_bloc.dart';
+import 'package:stylish/blocs/upload_image/upload_image_bloc.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
 import 'package:stylish/presentation/screens/product_details_screen.dart';
 import 'package:stylish/routes/app_routes.dart';
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => CategoriesBloc()..add(GetCategories())),
         BlocProvider(create: (_) => FavoriteBloc()),
         BlocProvider(create: (_)=> ProductDataBloc()),
+        BlocProvider(create: (_)=> ImageUploadBloc(FirebaseStorage.instance,ImagePicker())),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

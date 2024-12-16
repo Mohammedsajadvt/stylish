@@ -45,5 +45,4 @@ class SignupWithGithub extends FirebaseAuthEvent{
   BuildContext? context;
   SignupWithGithub(this.context);
 }
-
-
+ 

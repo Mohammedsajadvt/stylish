@@ -39,9 +39,9 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {},
                       child: GestureDetector(
                           onTap: () {},
-                          child:  CircleAvatar(
+                          child: image!=null? CircleAvatar(
                             backgroundImage: NetworkImage(image.toString()),
-                          )
+                          ):const CircleAvatar(child: Icon(Icons.person))
                           )),
                 );
                 }else if (state is AuthLoading) {
