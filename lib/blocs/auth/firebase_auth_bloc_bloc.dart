@@ -124,11 +124,14 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
                 FacebookAuthProvider.credential(result.accessToken!.token);
             UserCredential userCredential =
                 await _auth.signInWithCredential(credential);
-            FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(userCredential.user!.uid)
+                .set({
               'uid': userCredential.user!.uid,
               'email': userCredential.user!.email,
               'createdAt': DateTime.now()
-            },SetOptions(merge: true));    
+            }, SetOptions(merge: true));
             emit(AuthendicatedState(userCredential.user!));
           }
         } catch (e) {
@@ -159,7 +162,7 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
               'uid': user.uid,
               'email': user.email,
               'createdAt': DateTime.now()
-            },SetOptions(merge: true));
+            }, SetOptions(merge: true));
             emit(AuthendicatedState(user));
           } else {
             emit(UnAthendicated());
@@ -180,11 +183,11 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
                 FacebookAuthProvider.credential(result.accessToken!.token);
             UserCredential userCredential =
                 await _auth.signInWithCredential(credential);
-                FirebaseFirestore.instance.doc(userCredential.user!.uid).set({
+            FirebaseFirestore.instance.doc(userCredential.user!.uid).set({
               'uid': userCredential.user!.uid,
               'email': userCredential.user!.email,
               'createdAt': DateTime.now()
-                },SetOptions(merge: true));
+            }, SetOptions(merge: true));
             emit(AuthendicatedState(userCredential.user!));
           }
         } catch (e) {
@@ -208,10 +211,10 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           final signInWithCredential = await FirebaseAuth.instance
               .signInWithCredential(githubAuthCredential);
           FirebaseFirestore.instance.doc('users').set({
-            'uid': signInWithCredential .user!.uid,
-              'email': signInWithCredential .user!.email,
-              'createdAt': DateTime.now()
-          },SetOptions(merge: true));
+            'uid': signInWithCredential.user!.uid,
+            'email': signInWithCredential.user!.email,
+            'createdAt': DateTime.now()
+          }, SetOptions(merge: true));
           emit(AuthendicatedState(signInWithCredential.user!));
         } catch (e) {
           emit((AuthendicatedError(message: e.toString())));
@@ -234,82 +237,15 @@ class FirebaseAuthBloc extends Bloc<FirebaseAuthEvent, FirebaseAuthState> {
           final signInWithCredential = await FirebaseAuth.instance
               .signInWithCredential(githubAuthCredential);
           FirebaseFirestore.instance.doc('users').set({
-            'uid': signInWithCredential .user!.uid,
-              'email': signInWithCredential .user!.email,
-              'createdAt': DateTime.now()
-          },SetOptions(merge: true));
+            'uid': signInWithCredential.user!.uid,
+            'email': signInWithCredential.user!.email,
+            'createdAt': DateTime.now()
+          }, SetOptions(merge: true));
           emit(AuthendicatedState(signInWithCredential.user!));
         } catch (e) {
           emit((AuthendicatedError(message: e.toString())));
         }
       },
     );
-    on<UploadProfileImageEvent>((event, emit) async {
-  emit(AuthLoading());
-  try {
-    final user = _auth.currentUser;
-    if (user != null) {
-      final storageRef = FirebaseStorage.instance
-          .ref()
-          .child('profile_images/${user.uid}');
-      final uploadTask = await storageRef.putFile(File(event.filePath));
-      final imageUrl = await uploadTask.ref.getDownloadURL();
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .update({'profileImageUrl': imageUrl});
-
-      emit(AuthendicatedState(user));
-    } else {
-      emit(UnAthendicated());
-    }
-  } catch (e) {
-    emit(AuthendicatedError(message: e.toString()));
-  }
-});
-
-on<UpdateEmailEvent>((event, emit) async {
-  emit(AuthLoading());
-  try {
-    final user = _auth.currentUser;
-    if (user != null) {
-      await user.updateEmail(event.newEmail);
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .update({'email': event.newEmail});
-
-      emit(AuthendicatedState(user));
-    } else {
-      emit(UnAthendicated());
-    }
-  } catch (e) {
-    emit(AuthendicatedError(message: e.toString()));
-  }
-});
-
-on<UpdatePasswordEvent>((event, emit) async {
-  emit(AuthLoading());
-  try {
-    final user = _auth.currentUser;
-    if (user != null) {
-      await user.updatePassword(event.newPassword);
-
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .update({'password': event.newPassword});
-
-      emit(AuthendicatedState(user));
-    } else {
-      emit(UnAthendicated());
-    }
-  } catch (e) {
-    emit(AuthendicatedError(message: e.toString()));
-  }
-});
-
   }
 }

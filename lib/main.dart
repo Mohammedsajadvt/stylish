@@ -7,6 +7,7 @@ import 'package:stylish/blocs/carousel_slider/carousel_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/favorite/favorite_bloc.dart';
+import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
 import 'package:stylish/routes/app_routes.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (_) => FirebaseAuthBloc()..add(CheckLoginStatusEvent())),
         BlocProvider(create: (_) => CategoriesBloc()..add(GetCategories())),
-        BlocProvider(create: (_) => FavoriteBloc())
+        BlocProvider(create: (_) => FavoriteBloc()),
+        BlocProvider(create: (_)=> ProductDataBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

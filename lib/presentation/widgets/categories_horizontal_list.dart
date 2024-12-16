@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
 import 'package:stylish/data/models/categories_model.dart';
+import 'package:stylish/presentation/screens/product_screen.dart';
 import 'package:stylish/utils/constants.dart';
 import 'package:stylish/utils/helpers.dart';
 
@@ -31,7 +32,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        debugPrint("Tapped on ${category[index].name}");
+                        Navigator.of(context).pushNamed('/product');
                       },
                       child: CircleAvatar(
                         radius: ResponsiveHelper.getScreenWidth(context) * 0.075,

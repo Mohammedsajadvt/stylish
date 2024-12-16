@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stylish/blocs/auth/firebase_auth_bloc_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_event.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
@@ -26,16 +27,29 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           scrolledUnderElevation: 0,
           actions: [
-            Padding(
-              padding: EdgeInsets.all(
-                  ResponsiveHelper.getScreenHeight(context) * 0.008),
-              child: GestureDetector(
-                  onTap: () {},
+            BlocBuilder<FirebaseAuthBloc, FirebaseAuthState>(
+              builder: (context, state) {
+                if(state is AuthendicatedState){
+                  final user = state.user;
+                  final image = user.photoURL;
+                  return Padding(
+                  padding: EdgeInsets.all(
+                      ResponsiveHelper.getScreenHeight(context) * 0.008),
                   child: GestureDetector(
                       onTap: () {},
-                      child: const CircleAvatar(
-                        backgroundColor: AppColors.circleColor,
-                      ))),
+                      child: GestureDetector(
+                          onTap: () {},
+                          child:  CircleAvatar(
+                            backgroundImage: NetworkImage(image.toString()),
+                          )
+                          )),
+                );
+                }else if (state is AuthLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return const Center(child: Text('Failed to load profile'));
+          }
+              },
             )
           ],
           title: Row(
@@ -428,48 +442,52 @@ class HomeScreen extends StatelessWidget {
                                                 0.030,
                                       ),
                                     ),
-                                     SizedBox(
-                                    height: ResponsiveHelper.getScreenHeight(
-                                            context) *
-                                        0.020),
+                                    SizedBox(
+                                        height:
+                                            ResponsiveHelper.getScreenHeight(
+                                                    context) *
+                                                0.020),
                                     GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  width: ResponsiveHelper.getScreenHeight(
-                                          context) *
-                                      0.150,
-                                  height: ResponsiveHelper.getScreenHeight(
-                                          context) *
-                                      0.040,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: AppColors.pink,
-                                      border:
-                                          Border.all(color: AppColors.primary)),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Visit now',
-                                          style: TextStyle(
-                                              fontSize: ResponsiveHelper
-                                                      .getScreenHeight(
-                                                          context) *
-                                                  0.022,
-                                              color: AppColors.primary,
-                                              fontWeight: FontWeight.bold),
+                                      onTap: () {},
+                                      child: Container(
+                                        width: ResponsiveHelper.getScreenHeight(
+                                                context) *
+                                            0.150,
+                                        height:
+                                            ResponsiveHelper.getScreenHeight(
+                                                    context) *
+                                                0.040,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: AppColors.pink,
+                                            border: Border.all(
+                                                color: AppColors.primary)),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'Visit now',
+                                                style: TextStyle(
+                                                    fontSize: ResponsiveHelper
+                                                            .getScreenHeight(
+                                                                context) *
+                                                        0.022,
+                                                    color: AppColors.primary,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward,
+                                                color: AppColors.primary,
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                        const Icon(
-                                          Icons.arrow_forward,
-                                          color: AppColors.primary,
-                                        )
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
                                   ],
                                 ),
                               ],

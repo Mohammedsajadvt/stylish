@@ -46,17 +46,4 @@ class SignupWithGithub extends FirebaseAuthEvent{
   SignupWithGithub(this.context);
 }
 
-class UploadProfileImageEvent extends FirebaseAuthEvent {
-  final String filePath;
-  const UploadProfileImageEvent(this.filePath);
-}
 
-class UpdatePasswordEvent extends FirebaseAuthEvent {
-  final String newPassword;
-  const UpdatePasswordEvent({required this.newPassword});
-}
-
-class UpdateEmailEvent extends FirebaseAuthEvent {
-  final String newEmail;
-  const UpdateEmailEvent({required this.newEmail});
-}
