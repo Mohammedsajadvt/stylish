@@ -26,6 +26,7 @@ A Flutter-based ecommerce application designed to provide users with a smooth an
 
 - **Flutter** for building the cross-platform user interface.
 - **Dart** for programming logic and functionality.
+- **Firebase** Firebase Firestore for real-time data storage and Firebase Authentication for secure user login and management.
 - **BLoC** for state management and handling complex application states.
 - **BLoC architecture** The BLoC architecture promotes separation of concerns, where business logic is decoupled from the UI layer, ensuring a clean, maintainable, and scalable application.
 
