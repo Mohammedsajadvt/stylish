@@ -36,7 +36,7 @@ A Flutter-based ecommerce application designed to provide users with a smooth an
 ## UI Screenshots
 
 | Splash Screen | Onboarding Screen 1 | Onboarding Screen 2| Onboarding Screen 3|
-|:--------------:|:-----------------:|
+|:--------------:|:-----------------:|:-----------------:|:-----------------:|
 | <img src="screenshots/splash.png" height="200"> | <img src="screenshots/onboarding.png" height="200"> | <img src="screenshots/onboarding2.png" height="200"> |<img src="screenshots/onboarding3.png" height="200"> |
 
 | SignIn Screen | SignUp Screen | Forgot Password |
