@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/carousel_slider/carousel_bloc.dart';
-import 'package:stylish/blocs/carousel_slider/carousel_event.dart';
-import 'package:stylish/blocs/carousel_slider/carousel_state.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
+import 'package:stylish/utils/index.dart';
 
 class CustomCarouselSlider extends StatelessWidget {
   final List<String> images;

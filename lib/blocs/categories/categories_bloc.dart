@@ -1,7 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:stylish/data/repositories/firebase_storage_repository.dart';
-import 'categories_event.dart';
-import 'categories_state.dart';
+import 'package:stylish/utils/index.dart';
 
 class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
   CategoriesBloc() : super(InitialState()) {

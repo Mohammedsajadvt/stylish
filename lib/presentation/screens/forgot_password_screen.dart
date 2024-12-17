@@ -1,10 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:stylish/presentation/widgets/custom_button.dart';
-import 'package:stylish/presentation/widgets/custom_text_field.dart';
-import 'package:stylish/presentation/widgets/cutom_title.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
+import 'package:stylish/utils/index.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});

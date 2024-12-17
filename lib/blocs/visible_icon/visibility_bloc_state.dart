@@ -1,5 +1,4 @@
-part of 'visibility_bloc_bloc.dart';
-
+import 'package:stylish/utils/index.dart';
  class VisibilityState extends Equatable{
   final bool isVisible;
    const VisibilityState({required this.isVisible});

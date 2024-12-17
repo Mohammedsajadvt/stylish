@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:stylish/data/models/product_model.dart';
-import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
-import 'package:stylish/presentation/screens/forgot_password_screen.dart';
-import 'package:stylish/presentation/screens/onboarding_screen.dart';
-import 'package:stylish/presentation/screens/product_details_screen.dart';
-import 'package:stylish/presentation/screens/signin_screen.dart';
-import 'package:stylish/presentation/screens/signup_screen.dart';
-import 'package:stylish/presentation/screens/splash_screen.dart';
+import 'package:stylish/utils/index.dart';
 
 class AppRoutes {
   static const String splashscreen = '/';

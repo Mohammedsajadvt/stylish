@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:stylish/data/models/categories_model.dart';
-import 'package:stylish/data/models/product_model.dart';
+import 'package:stylish/utils/index.dart';
 
 class FirestoreRepository {
   Future<List<CategoriesModel>> getCategories() async {

@@ -1,6 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_event.dart';
-import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_state.dart';
+import 'package:stylish/utils/index.dart';
 
 class BottomNavigationBloc extends Bloc<BottomNavigationEvent, BottomNavigationState> {
   BottomNavigationBloc() : super(const BottomNavigationState(selectedIndex: 0)) {

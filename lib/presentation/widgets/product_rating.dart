@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:stylish/utils/constants.dart';
+import 'package:stylish/utils/index.dart';
 
 class ProductRating extends StatelessWidget {
   final double rating;

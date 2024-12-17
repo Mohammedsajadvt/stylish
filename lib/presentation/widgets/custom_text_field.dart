@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/visible_icon/visibility_bloc_bloc.dart';
-import 'package:stylish/utils/constants.dart';
+import 'package:stylish/utils/index.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

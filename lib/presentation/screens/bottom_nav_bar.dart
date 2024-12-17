@@ -1,28 +1,17 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
-import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_event.dart';
-import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_state.dart';
-import 'package:stylish/presentation/screens/home_screen.dart';
-import 'package:stylish/presentation/screens/wishlist_screen.dart';
-import 'package:stylish/presentation/screens/profile_screen.dart';
-import 'package:stylish/utils/constants.dart';
+import 'package:stylish/utils/index.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Navigation items/icons
     List<Widget> navigationItems = const [
       Icon(Icons.home_outlined),
       Icon(CupertinoIcons.heart),
       Icon(CupertinoIcons.person),
     ];
 
-    // Screens for each navigation item
     List<Widget> screens = const [
       HomeScreen(),
       WishlistScreen(),
@@ -33,7 +22,6 @@ class BottomNavBar extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       body: BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
         builder: (context, state) {
-          // Display the screen based on the current selected index
           return screens[state.selectedIndex];
         },
       ),

@@ -1,10 +1,4 @@
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:stylish/blocs/upload_image/upload_image_event.dart';
-import 'package:stylish/blocs/upload_image/upload_image_state.dart';
-
+import 'package:stylish/utils/index.dart';
 class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState> {
   final FirebaseStorage _firebaseStorage;
 

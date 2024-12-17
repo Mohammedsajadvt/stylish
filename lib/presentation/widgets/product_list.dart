@@ -1,15 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/favorite/wishlist_bloc.dart';
-import 'package:stylish/blocs/favorite/wishlist_event.dart';
-import 'package:stylish/blocs/favorite/wishlist_state.dart';
-import 'package:stylish/blocs/products/product_data_bloc.dart';
-import 'package:stylish/blocs/products/product_data_event.dart';
-import 'package:stylish/blocs/products/product_data_state.dart';
-import 'package:stylish/presentation/widgets/product_rating.dart';
-import 'package:stylish/presentation/screens/product_details_screen.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
+import 'package:stylish/utils/index.dart';
 
 class ProductList extends StatelessWidget {
   final ProductDataEvent event;

@@ -1,8 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
-part 'visibility_bloc_event.dart';
-part 'visibility_bloc_state.dart';
+import 'package:stylish/utils/index.dart';
 
 class VisibilityBloc extends Bloc<VisibilityEvent, VisibilityState> {
   VisibilityBloc() : super(const VisibilityState(isVisible: false)) {

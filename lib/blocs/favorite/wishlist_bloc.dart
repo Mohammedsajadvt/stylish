@@ -1,8 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:stylish/data/models/product_model.dart';
-import 'wishlist_event.dart';
-import 'wishlist_state.dart';
+import 'package:stylish/utils/index.dart';
 
 class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

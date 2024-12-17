@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
+import 'package:stylish/utils/index.dart';
 
 class CutomTitle extends StatelessWidget {
   final String title;

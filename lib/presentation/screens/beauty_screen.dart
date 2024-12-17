@@ -1,9 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:stylish/blocs/products/product_data_event.dart';
-import 'package:stylish/presentation/widgets/product_list.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
+import 'package:stylish/utils/index.dart';
 
 class BeautyScreen extends StatelessWidget {
   const BeautyScreen({super.key});

@@ -1,8 +1,4 @@
-
-import 'package:flutter/material.dart';
-import 'package:stylish/utils/constants.dart';
-import 'package:stylish/utils/helpers.dart';
-
+import 'package:stylish/utils/index.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   const CustomButton({

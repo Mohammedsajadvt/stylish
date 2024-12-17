@@ -1,4 +1,5 @@
-part of 'visibility_bloc_bloc.dart';
+
+import 'package:stylish/utils/index.dart';
 
 class VisibilityEvent extends Equatable {
   @override
