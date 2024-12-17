@@ -36,20 +36,21 @@ A Flutter-based ecommerce application designed to provide users with a smooth an
 ## UI Screenshots
 
 | Splash Screen | Onboarding Screen |
-|:-----------:|:----------:|
+|:--------------:|:-----------------:|
 | ![Splash Screen](screenshots/splash.png) | ![Onboarding Screen](screenshots/onboarding3.png) |
 
 | SignIn Screen | SignUp Screen | Forgot Password |
-|:-------------:|:------------:|
+|:--------------:|:-------------:|:---------------:|
 | ![SignIn Screen](screenshots/login.png) | ![SignUp Screen](screenshots/signup.png) | ![Forgot Password](screenshots/forgotpass.png) |
 
 | Home Screen | Product Details Screen | Categories Data |
-|:----------:|:---------------:|:-----------:|
+|:------------:|:----------------------:|:---------------:|
 | ![Home Screen](screenshots/home.png) | ![Product Details Screen](screenshots/detail.png) | ![Categories Data](screenshots/categories.png) |
 
 | Wishlist Screen | Profile Screen |
-|:----------:|:------------------:|:-------------:|
+|:---------------:|:--------------:|
 | ![Wishlist Screen](screenshots/wishlist.png) | ![Profile Screen](screenshots/profile.png) |
+
 
 
 ## Installation
