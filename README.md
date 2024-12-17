@@ -21,16 +21,12 @@ A Flutter-based ecommerce application designed to provide users with a smooth an
 - **State Management**:
   - Managed application state using the **BLoC** pattern.    
   
-- **Reactive Programming**:
-  - Utilized the **dart_either** package for handling results and errors in a more functional programming style.
 
 ## Technologies Used
 
 - **Flutter** for building the cross-platform user interface.
 - **Dart** for programming logic and functionality.
 - **BLoC** for state management and handling complex application states.
-- **JWT (JSON Web Tokens)** for secure authentication.
-- **dart_either** for reactive programming and managing results and errors.
 - **BLoC architecture** The BLoC architecture promotes separation of concerns, where business logic is decoupled from the UI layer, ensuring a clean, maintainable, and scalable application.
 
 ## UI Screenshots
