@@ -11,23 +11,59 @@ class ProductDataBloc extends Bloc<ProductDataEvent, ProductDataState> {
       await Future.delayed(const Duration(seconds: 1));
 
       try {
-        final List<ProductModel> womensData = await FirestoreRepository().getWomensData();
+        final List<ProductModel> womensData =
+            await FirestoreRepository().getWomensData();
         emit(ProductDataLoaded(womensData));
       } catch (e) {
         emit(ProductDataError(e.toString()));
       }
-      
     });
-    on<GetmensData>((event, emit)async {
+    on<GetmensData>(
+      (event, emit) async {
+        emit(ProductDataLoading());
+        await Future.delayed(const Duration(seconds: 1));
+
+        try {
+          final List<ProductModel> mensData =
+              await FirestoreRepository().getMensData();
+          emit(ProductDataLoaded(mensData));
+        } catch (e) {
+          emit(ProductDataError(e.toString()));
+        }
+      },
+    );
+    on<GetFootwareData>((event, emit) async {
       emit(ProductDataLoading());
       await Future.delayed(const Duration(seconds: 1));
-
-      try{
-       final List<ProductModel> mensData = await FirestoreRepository().getMensData();
-       emit(ProductDataLoaded(mensData));
-      }catch(e){
-      emit(ProductDataError(e.toString()));
+      try {
+        final List<ProductModel> footwareData =
+            await FirestoreRepository().getFootwareData();
+        emit(ProductDataLoaded(footwareData));
+      } catch (e) {
+        emit(ProductDataError(e.toString()));
       }
-    },);
+    });
+    on<GetWatchData>((event, emit) async {
+      emit(ProductDataLoading());
+      await Future.delayed(const Duration(seconds: 1));
+      try {
+        final List<ProductModel> watchData =
+            await FirestoreRepository().getWatchData();
+        emit(ProductDataLoaded(watchData));
+      } catch (e) {
+        emit(ProductDataError(e.toString()));
+      }
+    });
+    on<GetBeautyData>((event, emit) async {
+      emit(ProductDataLoading());
+      await Future.delayed(const Duration(seconds: 1));
+      try {
+        final List<ProductModel> beautyData =
+            await FirestoreRepository().getBeautyData();
+        emit(ProductDataLoaded(beautyData));
+      } catch (e) {
+        emit(ProductDataError(e.toString()));
+      }
+    });
   }
 }

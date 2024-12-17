@@ -3,15 +3,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/categories/categories_bloc.dart';
 import 'package:stylish/blocs/categories/categories_state.dart';
 import 'package:stylish/data/models/categories_model.dart';
-import 'package:stylish/presentation/screens/product_screen.dart';
+import 'package:stylish/presentation/screens/beauty_screen.dart';
+import 'package:stylish/presentation/screens/footware_screen.dart';
+import 'package:stylish/presentation/screens/mens_screen.dart';
+import 'package:stylish/presentation/screens/watch_screen.dart';
+import 'package:stylish/presentation/screens/womens_screen.dart';
 import 'package:stylish/utils/constants.dart';
 import 'package:stylish/utils/helpers.dart';
+
 
 class CategoriesHorizontalList extends StatelessWidget {
   const CategoriesHorizontalList({super.key});
 
   @override
   Widget build(BuildContext context) {
+   List<Widget> screens = const [
+    MensScreen(),
+    FootwareScreen(),
+    WatchScreen(),
+    BeautyScreen(),
+    WomensScreen()
+   ];
     return BlocBuilder<CategoriesBloc, CategoriesState>(
       builder: (context, state) {
         if (state is CategoriesLoading) {
@@ -25,6 +37,7 @@ class CategoriesHorizontalList extends StatelessWidget {
             itemCount: state.categories.length,
             itemBuilder: (context, index) {
               final List<CategoriesModel> category = state.categories;
+
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
@@ -32,7 +45,7 @@ class CategoriesHorizontalList extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/product');
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => screens[index]));
                       },
                       child: CircleAvatar(
                         radius: ResponsiveHelper.getScreenWidth(context) * 0.075,

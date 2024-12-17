@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stylish/blocs/favorite/favorite_bloc.dart';
-import 'package:stylish/blocs/favorite/favorite_event.dart';
-import 'package:stylish/blocs/favorite/favorite_state.dart';
+import 'package:stylish/blocs/favorite/wishlist_bloc.dart';
+import 'package:stylish/blocs/favorite/wishlist_event.dart';
+import 'package:stylish/blocs/favorite/wishlist_state.dart';
 import 'package:stylish/blocs/products/product_data_bloc.dart';
 import 'package:stylish/blocs/products/product_data_event.dart';
 import 'package:stylish/blocs/products/product_data_state.dart';
@@ -13,10 +13,11 @@ import 'package:stylish/utils/helpers.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductDataEvent event;
+
   const ProductCard({
-    super.key,
+    Key? key,
     required this.event,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +39,20 @@ class ProductCard extends StatelessWidget {
                   final product = productData[index];
                   return Padding(
                     padding: EdgeInsets.only(
-                        right:
-                            ResponsiveHelper.getScreenWidth(context) * 0.050),
+                        right: ResponsiveHelper.getScreenWidth(context) * 0.050),
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ProductDetailScreen(product: product)));
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) =>
+                                ProductDetailScreen(product: product)));
                       },
                       child: Card(
                         elevation: 0,
                         child: Stack(
                           children: [
                             Container(
-                              width: 170,
+                              width: ResponsiveHelper.getScreenHeight(context) *
+                                  0.170,
                               decoration: BoxDecoration(
                                 color: AppColors.primary,
                                 borderRadius: BorderRadius.circular(10),
@@ -139,28 +142,33 @@ class ProductCard extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            BlocBuilder<FavoriteBloc, FavoriteState>(
-                              builder: (context, state) {
+                            BlocBuilder<WishlistBloc, WishlistState>(
+                              builder: (context, wishlistState) {
                                 bool isFavorite = false;
-                                if (state is FavoriteUpdated) {
-                                  isFavorite = state.favorite.contains(product);
+
+                                if (wishlistState is WishlistLoaded) {
+                                  isFavorite = wishlistState.wishlist.any((item) => item.name == product.name);
                                 }
+
                                 return Positioned(
-                                    top: 8,
-                                    right: 8,
-                                    child: IconButton(
-                                      icon: Icon(
-                                        isFavorite
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: isFavorite ? AppColors.red : null,
-                                      ),
-                                      onPressed: () {
-                                        context
-                                            .read<FavoriteBloc>()
-                                            .add(ToggleFavoriteEvent(product));
-                                      },
-                                    ));
+                                  top: 8,
+                                  right: 8,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      isFavorite
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color: isFavorite ? AppColors.red : null,
+                                    ),
+                                    onPressed: () {
+                                      if (isFavorite) {
+                                        context.read<WishlistBloc>().add(RemoveProductFromWishlist(product));
+                                      } else {
+                                        context.read<WishlistBloc>().add(AddProductToWishlist(product));
+                                      }
+                                    },
+                                  ),
+                                );
                               },
                             ),
                           ],
@@ -171,7 +179,6 @@ class ProductCard extends StatelessWidget {
                 },
               );
             } else if (state is ProductDataError) {
-              print(state.message);
               return Center(child: Text('Error: ${state.message}'));
             } else {
               return const Center(child: Text('No product data available.'));

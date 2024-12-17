@@ -4,28 +4,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:stylish/blocs/upload_image/upload_image_event.dart';
 import 'package:stylish/blocs/upload_image/upload_image_state.dart';
+
 class ImageUploadBloc extends Bloc<ImageUploadEvent, ImageUploadState> {
   final FirebaseStorage _firebaseStorage;
-  final ImagePicker _imagePicker;
 
-  ImageUploadBloc(this._firebaseStorage, this._imagePicker) : super(ImageUploadInitialState());
+  ImageUploadBloc(this._firebaseStorage) : super(ImageUploadInitialState()) {
+    on<UploadImageEvent>(_handleImageUpload);
+  }
 
-  @override
-  Stream<ImageUploadState> mapEventToState(ImageUploadEvent event) async* {
-    if (event is UploadImageEvent) {
-      yield ImageUploadLoadingState();
-      try {
-        // Uploading the image to Firebase Storage
-        final file = File(event.image.path);
-        final storageRef = _firebaseStorage.ref().child('profile_pics/${DateTime.now().millisecondsSinceEpoch}');
-        final uploadTask = storageRef.putFile(file);
-        final snapshot = await uploadTask.whenComplete(() => {});
-        final imageUrl = await snapshot.ref.getDownloadURL();
+  Future<void> _handleImageUpload(
+      UploadImageEvent event, Emitter<ImageUploadState> emit) async {
+    emit(ImageUploadLoadingState());
+    try {
+      // Convert XFile to File
+      final file = File(event.image.path);
 
-        yield ImageUploadSuccessState(imageUrl);
-      } catch (e) {
-        yield ImageUploadFailedState(e.toString());
-      }
+      // Firebase Storage upload
+      final storageRef = _firebaseStorage
+          .ref()
+          .child('profile_pics/${DateTime.now().millisecondsSinceEpoch}');
+      final uploadTask = storageRef.putFile(file);
+      final snapshot = await uploadTask.whenComplete(() => {});
+      final imageUrl = await snapshot.ref.getDownloadURL();
+
+      emit(ImageUploadSuccessState(imageUrl));
+    } catch (e) {
+      emit(ImageUploadFailedState('Failed to upload image. Please try again.'));
     }
   }
 }

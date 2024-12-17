@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_bloc.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_event.dart';
 import 'package:stylish/blocs/bottom_navigation/bottom_nav_bar_state.dart';
-import 'package:stylish/presentation/screens/cart_screen.dart';
 import 'package:stylish/presentation/screens/home_screen.dart';
 import 'package:stylish/presentation/screens/wishlist_screen.dart';
 import 'package:stylish/presentation/screens/profile_screen.dart';
@@ -20,7 +19,6 @@ class BottomNavBar extends StatelessWidget {
     List<Widget> navigationItems = const [
       Icon(Icons.home_outlined),
       Icon(CupertinoIcons.heart),
-      Icon(CupertinoIcons.cart),
       Icon(CupertinoIcons.person),
     ];
 
@@ -28,7 +26,6 @@ class BottomNavBar extends StatelessWidget {
     List<Widget> screens = const [
       HomeScreen(),
       WishlistScreen(),
-      CartScreen(),
       ProfileScreen()
     ];
 

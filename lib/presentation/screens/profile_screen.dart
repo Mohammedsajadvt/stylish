@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.pop(context); 
+            Navigator.pop(context);
           },
         ),
         centerTitle: true,
@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () async {
               context.read<FirebaseAuthBloc>().add(LogoutEvent());
               await Future.delayed(const Duration(seconds: 1));
-              Navigator.of(context).pushNamed('/signin'); 
+              Navigator.of(context).pushNamed('/signin');
             },
             icon: const Icon(
               Icons.logout,
@@ -82,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                               source: ImageSource.gallery,
                             );
                             if (pickedFile != null) {
-                              imageUploadBloc.add(UploadImageEvent(image:pickedFile));
+                              imageUploadBloc.add(UploadImageEvent(image: pickedFile));
                             }
                           },
                           child: const CircleAvatar(

@@ -58,4 +58,37 @@ class FirestoreRepository {
     }
     return getMensDataList;
   }
+  Future<List<ProductModel>> getFootwareData()async{
+    List<ProductModel> getFootwareDataList = [];
+    try{
+    final getFootwareData = await FirebaseFirestore.instance.collection('categories').doc('FgzUoYyzWEqPqBhur7Gm').collection('footware').get();
+    getFootwareDataList = getFootwareData.docs.map((doc)=> ProductModel.fromJson(doc.data())).toList(); 
+    }catch(e){
+      print("Error fetching footware data: $e");
+
+    }
+    return getFootwareDataList;
+  }
+  Future<List<ProductModel>> getWatchData()async{
+    List<ProductModel> getWatchDataList = [];
+    try{
+    final getWatchData = await FirebaseFirestore.instance.collection('categories').doc('RINgcwIoz3Sn4pJFu6Eg').collection('watch').get();
+    getWatchDataList = getWatchData.docs.map((doc)=> ProductModel.fromJson(doc.data())).toList(); 
+    }catch(e){
+      print("Error fetching footware data: $e");
+
+    }
+    return getWatchDataList;
+  }
+  Future<List<ProductModel>> getBeautyData()async{
+    List<ProductModel> getBeautyDataList = [];
+    try{
+    final getBeautyData = await FirebaseFirestore.instance.collection('categories').doc('W1PCRAKoLlDPjbi39kYS').collection('beauty').get();
+    getBeautyDataList = getBeautyData.docs.map((doc)=> ProductModel.fromJson(doc.data())).toList(); 
+    }catch(e){
+      print("Error fetching footware data: $e");
+
+    }
+    return getBeautyDataList;
+  }
 }

@@ -16,3 +16,13 @@ class GetWomensData extends ProductDataEvent{
 class GetmensData extends ProductDataEvent{
   const GetmensData();
 }
+class GetWatchData extends ProductDataEvent{
+  const GetWatchData();
+}
+class GetFootwareData extends ProductDataEvent{
+  const GetFootwareData();
+}
+class GetBeautyData extends ProductDataEvent{
+  const GetBeautyData();
+}
+

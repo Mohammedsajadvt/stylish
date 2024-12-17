@@ -4,7 +4,6 @@ import 'package:stylish/presentation/screens/bottom_nav_bar.dart';
 import 'package:stylish/presentation/screens/forgot_password_screen.dart';
 import 'package:stylish/presentation/screens/onboarding_screen.dart';
 import 'package:stylish/presentation/screens/product_details_screen.dart';
-import 'package:stylish/presentation/screens/product_screen.dart';
 import 'package:stylish/presentation/screens/signin_screen.dart';
 import 'package:stylish/presentation/screens/signup_screen.dart';
 import 'package:stylish/presentation/screens/splash_screen.dart';
@@ -16,7 +15,6 @@ class AppRoutes {
   static const String signup = '/signup';
   static const String forgotPassword = '/forgotpassword';
   static const String bottomnavbar = "/bottomnavbar";
-  static const String product = "/product";
   static const String productDetails = "/productdetails";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -35,9 +33,7 @@ class AppRoutes {
       case forgotPassword:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());        
       case bottomnavbar:
-        return MaterialPageRoute(builder: (_) => const BottomNavBar());  
-      case product:
-        return MaterialPageRoute(builder: (_)=> const ProductScreen());     
+        return MaterialPageRoute(builder: (_) => const BottomNavBar());     
       case productDetails:
         return MaterialPageRoute(builder: (_)=> ProductDetailScreen(product: products!,));     
       default:
