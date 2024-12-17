@@ -37,19 +37,20 @@ A Flutter-based ecommerce application designed to provide users with a smooth an
 
 | Splash Screen | Onboarding Screen |
 |:--------------:|:-----------------:|
-| ![Splash Screen](screenshots/splash.png) | ![Onboarding Screen](screenshots/onboarding3.png) |
+| <img src="screenshots/splash.png" height="200"> | <img src="screenshots/onboarding3.png" height="200"> |
 
 | SignIn Screen | SignUp Screen | Forgot Password |
 |:--------------:|:-------------:|:---------------:|
-| ![SignIn Screen](screenshots/login.png) | ![SignUp Screen](screenshots/signup.png) | ![Forgot Password](screenshots/forgotpass.png) |
+| <img src="screenshots/login.png" height="200"> | <img src="screenshots/signup.png" height="200"> | <img src="screenshots/forgotpass.png" height="200"> |
 
 | Home Screen | Product Details Screen | Categories Data |
 |:------------:|:----------------------:|:---------------:|
-| ![Home Screen](screenshots/home.png) | ![Product Details Screen](screenshots/detail.png) | ![Categories Data](screenshots/categories.png) |
+| <img src="screenshots/home.png" height="200"> | <img src="screenshots/detail.png" height="200"> | <img src="screenshots/categories.png" height="200"> |
 
 | Wishlist Screen | Profile Screen |
 |:---------------:|:--------------:|
-| ![Wishlist Screen](screenshots/wishlist.png) | ![Profile Screen](screenshots/profile.png) |
+| <img src="screenshots/wishlist.png" height="200"> | <img src="screenshots/profile.png" height="200"> |
+
 
 
 
